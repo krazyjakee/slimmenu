@@ -15,7 +15,8 @@
             animSpeed: 'medium',
             easingEffect: null,
             indentChildren: false,
-            childrenIndenter: '&nbsp;&nbsp;'
+            childrenIndenter: '&nbsp;&nbsp;',
+            dropdownChar: '&#9662;'
         };
 
     function Plugin( element, options )
@@ -48,13 +49,13 @@
                 if ($(this).hasClass('expanded'))
                 {
                     $(this).removeClass('expanded');
-                    $(this).find('i').html('&#9660;');
+                    $(this).find('i').html($options.dropdownChar);
                     $parent_li.find('>ul').slideUp($options.animSpeed, $options.easingEffect);
                 }
                 else
                 {
                     $(this).addClass('expanded');
-                    $(this).find('i').html('&#9650;');
+                    $(this).find('i').html($options.dropdownChar);
                     $parent_li.find('>ul').slideDown($options.animSpeed, $options.easingEffect);
                 }
             });
@@ -82,7 +83,7 @@
                 {
                     if ($(this).has('.sub-collapser').length)
                     {
-                        $(this).children('.sub-collapser i').html('&#9660;');
+                        $(this).children('.sub-collapser i').html($options.dropdownChar);
                     }
                     else
                     {
@@ -91,7 +92,7 @@
                 }
 
                 $(this).children('ul').hide();
-                $(this).find('.sub-collapser').removeClass('expanded').children('i').html('&#9660;');
+                $(this).find('.sub-collapser').removeClass('expanded').children('i').html($options.dropdownChar);
             });
 
             if ($options.resizeWidth >= $window.width())
